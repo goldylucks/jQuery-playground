@@ -1,0 +1,17 @@
+#search-results {
+  position: relative;
+  height: 500px;
+  overflow: scroll;
+}
+
+.fixed-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: blue;
+}
+
+.filler {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
