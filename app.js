@@ -1,35 +1,52 @@
 $(document).ready(onReady)
 
-function onReady () {
-  console.log('init!')
+  function onReady () {
+    console.log('init!')
 
-const tableWidth = $('.search-results').outerWidth()
-const tableHeaderHeight = $('#table-header').height()
-const $headerClone = $('<div />').addClass('fixed-header').width(tableWidth).height(tableHeaderHeight)
+  const $tableContainer = $('#search-results')
 
-$('#search-results th').each(function () {
+  const tableWidth = $('.search-results').outerWidth()
+  const tableHeaderHeight = $('#table-header').height()
+  const $headerClone = $('<div />').addClass('fixed-header').width(tableWidth).height(tableHeaderHeight)
+
+  $('#search-results th').each(function () {
+      $('<div>' + $(this).html() + '</div>')
+      .appendTo($headerClone)
+  })
+
+  $('.search-results thead tr').hide()
+
+  $tableContainer.prepend($headerClone)
+
+  const $columnClone = $('<div />')
+  const columnWidth = $('.country').eq(0).outerWidth()
+
+  $('tbody.list .country').each(function () {
+    const $this = $(this)
     $('<div>' + $(this).html() + '</div>')
-    .appendTo($headerClone)
-})
+      .height($this.outerHeight())
+      .appendTo($columnClone)
+  })
 
-$('.search-results thead tr').hide()
+  $columnClone
+    .addClass('fixed-column')
+    .outerWidth(columnWidth)
+    .css('top', $headerClone.outerHeight())
+    .prependTo('#search-results')
 
-$headerClone.prependTo('#search-results')
+  let lastScrollLeft = 0;
 
-// const $columnClone = $('<div />')
-// const columnWidth = $('.country').eq(0).outerWidth()
+  $tableContainer.scroll(function() {
+    clearTimeout($.data(this, 'scrollTimer'));
+    $.data(this, 'scrollTimer', setTimeout(function() {
+        adjustFirstColumn()
+    }, 250));
+  });
 
-// $('tbody.list .country').each(function () {
-//   const $this = $(this)
-//   $('<div>' + $(this).html() + '</div>')
-//     .height($this.outerHeight())
-//     .appendTo($columnClone)
-// })
-// $columnClone
-//   .addClass('fixed-column')
-//   .outerWidth(columnWidth)
-//   .css('top', $headerClone.outerHeight())
-//   .prependTo('#search-results')
-
+  function adjustFirstColumn () {
+    $columnClone.animate({
+      left: $tableContainer.scrollLeft()
+    }, 500, 'swing')
+  }
   
 }

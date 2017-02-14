@@ -11,6 +11,7 @@
 
 .search-results {
   table-layout: fixed;
+  border-collapse: collapse;
   width: 1px;  /* silly requirement from browsers */
 }
 
@@ -40,7 +41,8 @@
 }
 
 .fixed-column {
-  position: sticky;
+  position: absolute;
+  zIndex: 10;
   left: 0;
   background: red;
   float: left;
