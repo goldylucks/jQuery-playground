@@ -1,17 +1,53 @@
+* {
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
 #search-results {
   position: relative;
   height: 500px;
   overflow: scroll;
 }
 
+.search-results {
+  table-layout: fixed;
+  width: 1px;  /* silly requirement from browsers */
+}
+
+.search-results th,
+.search-results td {
+  width: 200px;
+}
+
+#search-results .theme-name {
+  font-size: 16px;
+  text-align: left;
+}
+
+#search-results .question-title {
+  text-align: left;
+}
+
 .fixed-header {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: sticky;
+  top: -1px;
   background: blue;
+}
+
+.fixed-header > div {
+  width: 200px;
+  float: left;
+}
+
+.fixed-column {
+  position: sticky;
+  left: 0;
+  background: red;
+  float: left;
 }
 
 .filler {
   margin-top: 200px;
   margin-bottom: 200px;
 }
+
