@@ -30,8 +30,8 @@
 }
 
 .fixed-header {
-  position: sticky;
-  top: -1px;
+  z-index: 100;
+  top: 0;
   background: blue;
 }
 
@@ -42,7 +42,7 @@
 
 .fixed-column {
   position: absolute;
-  zIndex: 10;
+  z-index: 10;
   left: 0;
   background: red;
   float: left;
